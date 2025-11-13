@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Сравнительный анализ оборота и роялти 2024-2025</title>
+    <title>Сравнительный анализ оборота и роялти 2023-2025</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         body {
@@ -14,7 +14,7 @@
             color: #333;
         }
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             background-color: rgba(255, 255, 255, 0.95);
             border-radius: 15px;
@@ -55,8 +55,11 @@
             margin: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
+        .stat-card.year-2023 {
+            background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%);
+        }
         .stat-card.year-2024 {
-            background: linear-gradient(135deg, #3498db 0%, #2c3e50 100%);
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
         }
         .stat-card.year-2025 {
             background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
@@ -129,6 +132,40 @@
             color: #e74c3c;
             font-weight: bold;
         }
+        .key-metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        .metric-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+        .metric-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 10px;
+        }
+        .metric-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding: 8px 0;
+            border-bottom: 1px solid #f8f9fa;
+        }
+        .metric-name {
+            color: #7f8c8d;
+        }
+        .metric-value {
+            font-weight: bold;
+            color: #2c3e50;
+        }
         @media (max-width: 768px) {
             .chart-container {
                 height: 70vh;
@@ -137,32 +174,35 @@
                 min-width: 150px;
                 padding: 15px;
             }
+            .key-metrics {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>📊 Сравнительный анализ оборота и роялти</h1>
-        <div class="subtitle">Динамика показателей за 2024 и 2025 годы</div>
+        <div class="subtitle">Динамика показателей за 2023-2025 годы</div>
         
         <div class="stats">
+            <div class="stat-card year-2023">
+                <div class="stat-label">Общий оборот 2023</div>
+                <div class="stat-value">533.6 млн</div>
+                <div class="stat-label">Общее роялти</div>
+                <div class="stat-value">24.2 млн</div>
+            </div>
             <div class="stat-card year-2024">
                 <div class="stat-label">Общий оборот 2024</div>
-                <div class="stat-value">490.9 млн</div>
-                <div class="stat-label">Среднее роялти</div>
-                <div class="stat-value">1.86 млн</div>
+                <div class="stat-value">491.2 млн</div>
+                <div class="stat-label">Общее роялти</div>
+                <div class="stat-value">22.5 млн</div>
             </div>
             <div class="stat-card year-2025">
                 <div class="stat-label">Общий оборот 2025*</div>
-                <div class="stat-value">447.6 млн</div>
-                <div class="stat-label">Среднее роялти</div>
-                <div class="stat-value">1.76 млн</div>
-            </div>
-            <div class="stat-card comparison">
-                <div class="stat-label">Рост оборота</div>
-                <div class="stat-value">октябрь +51%</div>
-                <div class="stat-label">Рост роялти</div>
-                <div class="stat-value">октябрь +34%</div>
+                <div class="stat-value">467.9 млн</div>
+                <div class="stat-label">Общее роялти</div>
+                <div class="stat-value">19.1 млн</div>
             </div>
         </div>
         <div class="subtitle">*Для 2025 года представлена информация только за 10 месяцев</div>
@@ -173,11 +213,19 @@
         
         <div class="legend">
             <div class="legend-item">
+                <div class="legend-color" style="background-color: rgba(155, 89, 182, 0.8);"></div>
+                <span>Оборот 2023</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background-color: rgba(142, 68, 173, 0.8);"></div>
+                <span>Роялти 2023</span>
+            </div>
+            <div class="legend-item">
                 <div class="legend-color" style="background-color: rgba(52, 152, 219, 0.8);"></div>
                 <span>Оборот 2024</span>
             </div>
             <div class="legend-item">
-                <div class="legend-color" style="background-color: rgba(44, 62, 80, 0.8);"></div>
+                <div class="legend-color" style="background-color: rgba(41, 128, 185, 0.8);"></div>
                 <span>Роялти 2024</span>
             </div>
             <div class="legend-item">
@@ -190,16 +238,78 @@
             </div>
         </div>
         
+        <div class="key-metrics">
+            <div class="metric-card">
+                <div class="metric-title">📈 Ключевые показатели за 10 месяцев</div>
+                <div class="metric-item">
+                    <div class="metric-name">Самый высокий оборот:</div>
+                    <div class="metric-value">Октябрь 2025 (66.15 млн)</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-name">Самый высокий роялти:</div>
+                    <div class="metric-value">Октябрь 2025 (2.60 млн)</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-name">Рост оборота 2025/2024:</div>
+                    <div class="metric-value positive">+51% (в октябре)</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-name">Рост роялти 2025/2024:</div>
+                    <div class="metric-value positive">+34% (в октябре)</div>
+                </div>
+            </div>
+            
+            <div class="metric-card">
+                <div class="metric-title">📊 Средние показатели за год</div>
+                <div class="metric-item">
+                    <div class="metric-name">Средний оборот 2023:</div>
+                    <div class="metric-value">44.5 млн/мес</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-name">Средний оборот 2024:</div>
+                    <div class="metric-value">40.9 млн/мес</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-name">Средний оборот 2025*:</div>
+                    <div class="metric-value">46.8 млн/мес</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-name">Изменение оборота 2025/2024:</div>
+                    <div class="metric-value positive">+14.4%</div>
+                </div>
+            </div>
+            
+            <div class="metric-card">
+                <div class="metric-title">💰 Эффективность роялти</div>
+                <div class="metric-item">
+                    <div class="metric-name">Соотношение роялти/оборот 2023:</div>
+                    <div class="metric-value">4.5%</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-name">Соотношение роялти/оборот 2024:</div>
+                    <div class="metric-value">4.6%</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-name">Соотношение роялти/оборот 2025:</div>
+                    <div class="metric-value">4.1%</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-name">Стабильность показателя:</div>
+                    <div class="metric-value positive">Высокая</div>
+                </div>
+            </div>
+        </div>
+        
         <table class="comparison-table">
             <thead>
                 <tr>
                     <th class="month-header">Месяц</th>
+                    <th>Оборот 2023</th>
                     <th>Оборот 2024</th>
                     <th>Оборот 2025</th>
-                    <th>Изменение оборота</th>
+                    <th>Роялти 2023</th>
                     <th>Роялти 2024</th>
                     <th>Роялти 2025</th>
-                    <th>Изменение роялти</th>
                 </tr>
             </thead>
             <tbody id="comparisonTableBody">
@@ -209,7 +319,7 @@
         
         <div class="footer">
             <p>График построен на основе данных из файла "ГОДОВОЙ РОЯЛТИ ОБОРОТ 2025.xlsx"</p>
-            <p>Данные за 2024 год полные, за 2025 год представлены только по доступным месяцам</p>
+            <p>Данные за 2023 и 2024 годы полные, за 2025 год представлены только по доступным месяцам</p>
         </div>
     </div>
 
@@ -217,16 +327,61 @@
         document.addEventListener('DOMContentLoaded', function() {
             const ctx = document.getElementById('comparisonChart').getContext('2d');
             
-            // Данные для графика
+            // Данные для графика (точные значения в млн руб.)
             const months = ['Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн', 'Июл', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек'];
             
-            // Данные за 2024 год
+            // Данные за 2023 год (точные значения в млн руб.)
+            const turnover2023 = [21.62, 29.97, 38.92, 40.97, 43.10, 41.63, 45.48, 53.95, 54.67, 56.22, 52.10, 55.00];
+            const royalty2023 = [1.15, 1.48, 1.90, 1.95, 1.98, 1.93, 2.09, 2.36, 2.36, 2.39, 2.25, 2.34];
+            
+            // Данные за 2024 год (точные значения в млн руб.)
             const turnover2024 = [25.39, 46.87, 37.04, 42.07, 40.74, 40.38, 45.85, 43.90, 43.15, 43.74, 40.80, 41.25];
             const royalty2024 = [1.26, 2.03, 1.68, 1.92, 1.83, 1.86, 2.14, 2.04, 1.92, 1.94, 1.88, 1.96];
             
-            // Обновленные данные за 2025 год
+            // Данные за 2025 год (точные значения в млн руб.)
             const turnover2025 = [31.62, 30.26, 37.54, 48.07, 37.61, 52.36, 59.66, 47.40, 57.24, 66.15, null, null];
-            const royalty2025 = [1.55, 1.40, 1.47, 1.96, 1.35, 2.00, 2.37, 1.95, 2.27, 2.60, null, null];
+            const royalty2025 = [1.55, 1.40, 1.56, 1.96, 1.50, 2.00, 2.37, 1.95, 2.27, 2.60, null, null];
+            
+            // Расчет общих сумм (используем точные значения)
+            const totalTurnover2023 = 533.64;
+            const totalRoyalty2023 = 24.18;
+            
+            const totalTurnover2024 = 491.18;
+            const totalRoyalty2024 = 22.47;
+            
+            const totalTurnover2025 = 467.92;
+            const totalRoyalty2025 = 19.15;
+            
+            // Расчет средних показателей
+            const avgTurnover2023 = totalTurnover2023 / 12;
+            const avgTurnover2024 = totalTurnover2024 / 12;
+            const avgTurnover2025 = totalTurnover2025 / 10;
+            
+            const royaltyRatio2023 = (totalRoyalty2023 / totalTurnover2023 * 100).toFixed(1);
+            const royaltyRatio2024 = (totalRoyalty2024 / totalTurnover2024 * 100).toFixed(1);
+            const royaltyRatio2025 = (totalRoyalty2025 / totalTurnover2025 * 100).toFixed(1);
+            
+            // Обновление статистики на странице
+            document.querySelector('.year-2023 .stat-value:nth-child(2)').textContent = totalTurnover2023.toFixed(1) + ' млн';
+            document.querySelector('.year-2023 .stat-value:nth-child(4)').textContent = totalRoyalty2023.toFixed(1) + ' млн';
+            
+            document.querySelector('.year-2024 .stat-value:nth-child(2)').textContent = totalTurnover2024.toFixed(1) + ' млн';
+            document.querySelector('.year-2024 .stat-value:nth-child(4)').textContent = totalRoyalty2024.toFixed(1) + ' млн';
+            
+            document.querySelector('.year-2025 .stat-value:nth-child(2)').textContent = totalTurnover2025.toFixed(1) + ' млн';
+            document.querySelector('.year-2025 .stat-value:nth-child(4)').textContent = totalRoyalty2025.toFixed(1) + ' млн';
+            
+            // Обновление ключевых показателей
+            document.querySelectorAll('.metric-item')[3].querySelector('.metric-value').textContent = avgTurnover2023.toFixed(1) + ' млн/мес';
+            document.querySelectorAll('.metric-item')[4].querySelector('.metric-value').textContent = avgTurnover2024.toFixed(1) + ' млн/мес';
+            document.querySelectorAll('.metric-item')[5].querySelector('.metric-value').textContent = avgTurnover2025.toFixed(1) + ' млн/мес';
+            
+            const turnoverChange2025 = ((avgTurnover2025 - avgTurnover2024) / avgTurnover2024 * 100).toFixed(1);
+            document.querySelectorAll('.metric-item')[6].querySelector('.metric-value').textContent = '+' + turnoverChange2025 + '%';
+            
+            document.querySelectorAll('.metric-item')[7].querySelector('.metric-value').textContent = royaltyRatio2023 + '%';
+            document.querySelectorAll('.metric-item')[8].querySelector('.metric-value').textContent = royaltyRatio2024 + '%';
+            document.querySelectorAll('.metric-item')[9].querySelector('.metric-value').textContent = royaltyRatio2025 + '%';
             
             // Создание графика
             const chart = new Chart(ctx, {
@@ -235,15 +390,43 @@
                     labels: months,
                     datasets: [
                         {
+                            label: 'Оборот 2023 (млн руб.)',
+                            data: turnover2023,
+                            borderColor: 'rgba(155, 89, 182, 0.9)',
+                            backgroundColor: 'rgba(155, 89, 182, 0.1)',
+                            borderWidth: 2,
+                            pointRadius: 4,
+                            pointBackgroundColor: 'rgba(155, 89, 182, 1)',
+                            pointBorderColor: '#fff',
+                            pointBorderWidth: 1,
+                            yAxisID: 'y',
+                            fill: false,
+                            tension: 0.3
+                        },
+                        {
+                            label: 'Роялти 2023 (млн руб.)',
+                            data: royalty2023,
+                            borderColor: 'rgba(142, 68, 173, 0.9)',
+                            backgroundColor: 'rgba(142, 68, 173, 0.1)',
+                            borderWidth: 2,
+                            pointRadius: 4,
+                            pointBackgroundColor: 'rgba(142, 68, 173, 1)',
+                            pointBorderColor: '#fff',
+                            pointBorderWidth: 1,
+                            yAxisID: 'y1',
+                            fill: false,
+                            tension: 0.3
+                        },
+                        {
                             label: 'Оборот 2024 (млн руб.)',
                             data: turnover2024,
                             borderColor: 'rgba(52, 152, 219, 0.9)',
                             backgroundColor: 'rgba(52, 152, 219, 0.1)',
-                            borderWidth: 3,
-                            pointRadius: 5,
+                            borderWidth: 2,
+                            pointRadius: 4,
                             pointBackgroundColor: 'rgba(52, 152, 219, 1)',
                             pointBorderColor: '#fff',
-                            pointBorderWidth: 2,
+                            pointBorderWidth: 1,
                             yAxisID: 'y',
                             fill: false,
                             tension: 0.3
@@ -251,13 +434,13 @@
                         {
                             label: 'Роялти 2024 (млн руб.)',
                             data: royalty2024,
-                            borderColor: 'rgba(44, 62, 80, 0.9)',
-                            backgroundColor: 'rgba(44, 62, 80, 0.1)',
-                            borderWidth: 3,
-                            pointRadius: 5,
-                            pointBackgroundColor: 'rgba(44, 62, 80, 1)',
+                            borderColor: 'rgba(41, 128, 185, 0.9)',
+                            backgroundColor: 'rgba(41, 128, 185, 0.1)',
+                            borderWidth: 2,
+                            pointRadius: 4,
+                            pointBackgroundColor: 'rgba(41, 128, 185, 1)',
                             pointBorderColor: '#fff',
-                            pointBorderWidth: 2,
+                            pointBorderWidth: 1,
                             yAxisID: 'y1',
                             fill: false,
                             tension: 0.3
@@ -303,7 +486,7 @@
                     plugins: {
                         title: {
                             display: true,
-                            text: 'Сравнение оборота и роялти за 2024 и 2025 годы',
+                            text: 'Сравнение оборота и роялти за 2023-2025 годы',
                             font: {
                                 size: 18,
                                 weight: 'bold'
@@ -410,18 +593,15 @@
                 tableBody.innerHTML = '';
                 
                 for (let i = 0; i < 10; i++) {
-                    const turnoverChange = ((turnover2025[i] - turnover2024[i]) / turnover2024[i] * 100).toFixed(1);
-                    const royaltyChange = ((royalty2025[i] - royalty2024[i]) / royalty2024[i] * 100).toFixed(1);
-                    
                     const row = document.createElement('tr');
                     row.innerHTML = `
                         <td class="month-header">${months[i]}</td>
+                        <td>${turnover2023[i].toFixed(2)} млн</td>
                         <td>${turnover2024[i].toFixed(2)} млн</td>
                         <td>${turnover2025[i].toFixed(2)} млн</td>
-                        <td class="${turnoverChange >= 0 ? 'positive' : 'negative'}">${turnoverChange}%</td>
+                        <td>${royalty2023[i].toFixed(2)} млн</td>
                         <td>${royalty2024[i].toFixed(2)} млн</td>
                         <td>${royalty2025[i].toFixed(2)} млн</td>
-                        <td class="${royaltyChange >= 0 ? 'positive' : 'negative'}">${royaltyChange}%</td>
                     `;
                     tableBody.appendChild(row);
                 }
