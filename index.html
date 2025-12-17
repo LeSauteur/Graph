@@ -200,12 +200,12 @@
             </div>
             <div class="stat-card year-2025">
                 <div class="stat-label">Общий оборот 2025*</div>
-                <div class="stat-value">467.9 млн</div>
+                <div class="stat-value">546.7 млн</div>
                 <div class="stat-label">Общее роялти</div>
-                <div class="stat-value">19.1 млн</div>
+                <div class="stat-value">21.1 млн</div>
             </div>
         </div>
-        <div class="subtitle">*Для 2025 года представлена информация только за 10 месяцев</div>
+        <div class="subtitle">*Для 2025 года представлена информация только за 11 месяцев</div>
         
         <div class="chart-container">
             <canvas id="comparisonChart"></canvas>
@@ -240,7 +240,7 @@
         
         <div class="key-metrics">
             <div class="metric-card">
-                <div class="metric-title">📈 Ключевые показатели за 10 месяцев</div>
+                <div class="metric-title">📈 Ключевые показатели за 11 месяцев</div>
                 <div class="metric-item">
                     <div class="metric-name">Самый высокий оборот:</div>
                     <div class="metric-value">Октябрь 2025 (66.15 млн)</div>
@@ -271,11 +271,11 @@
                 </div>
                 <div class="metric-item">
                     <div class="metric-name">Средний оборот 2025*:</div>
-                    <div class="metric-value">46.8 млн/мес</div>
+                    <div class="metric-value">49.7 млн/мес</div>
                 </div>
                 <div class="metric-item">
                     <div class="metric-name">Изменение оборота 2025/2024:</div>
-                    <div class="metric-value positive">+14.4%</div>
+                    <div class="metric-value positive">+21.5%</div>
                 </div>
             </div>
             
@@ -291,7 +291,7 @@
                 </div>
                 <div class="metric-item">
                     <div class="metric-name">Соотношение роялти/оборот 2025:</div>
-                    <div class="metric-value">4.1%</div>
+                    <div class="metric-value">3.9%</div>
                 </div>
                 <div class="metric-item">
                     <div class="metric-name">Стабильность показателя:</div>
@@ -338,9 +338,9 @@
             const turnover2024 = [25.39, 46.87, 37.04, 42.07, 40.74, 40.38, 45.85, 43.90, 43.15, 43.74, 40.80, 41.25];
             const royalty2024 = [1.26, 2.03, 1.68, 1.92, 1.83, 1.86, 2.14, 2.04, 1.92, 1.94, 1.88, 1.96];
             
-            // Данные за 2025 год (точные значения в млн руб.)
-            const turnover2025 = [31.62, 30.26, 37.54, 48.07, 37.61, 52.36, 59.66, 47.40, 57.24, 66.15, null, null];
-            const royalty2025 = [1.55, 1.40, 1.56, 1.96, 1.50, 2.00, 2.37, 1.95, 2.27, 2.60, null, null];
+            // ОБНОВЛЁННЫЕ данные за 2025 год (точные значения в млн руб.)
+            const turnover2025 = [31.62, 30.26, 37.54, 48.07, 37.61, 52.36, 56.21, 47.40, 57.24, 66.15, 59.34, null];
+            const royalty2025 = [1.55, 1.40, 1.56, 1.96, 1.50, 2.00, 2.27, 1.95, 2.27, 2.60, 1.88, null];
             
             // Расчет общих сумм (используем точные значения)
             const totalTurnover2023 = 533.64;
@@ -349,17 +349,21 @@
             const totalTurnover2024 = 491.18;
             const totalRoyalty2024 = 22.47;
             
-            const totalTurnover2025 = 467.92;
-            const totalRoyalty2025 = 19.15;
+            // Обновленные суммы за 2025 год (11 месяцев)
+            const totalTurnover2025 = turnover2025.slice(0, 11).reduce((sum, val) => sum + (val || 0), 0);
+            const totalRoyalty2025 = royalty2025.slice(0, 11).reduce((sum, val) => sum + (val || 0), 0);
             
             // Расчет средних показателей
             const avgTurnover2023 = totalTurnover2023 / 12;
             const avgTurnover2024 = totalTurnover2024 / 12;
-            const avgTurnover2025 = totalTurnover2025 / 10;
+            const avgTurnover2025 = totalTurnover2025 / 11;
             
             const royaltyRatio2023 = (totalRoyalty2023 / totalTurnover2023 * 100).toFixed(1);
             const royaltyRatio2024 = (totalRoyalty2024 / totalTurnover2024 * 100).toFixed(1);
             const royaltyRatio2025 = (totalRoyalty2025 / totalTurnover2025 * 100).toFixed(1);
+            
+            // Расчет изменения оборота 2025/2024
+            const turnoverChange2025 = ((avgTurnover2025 - avgTurnover2024) / avgTurnover2024 * 100).toFixed(1);
             
             // Обновление статистики на странице
             document.querySelector('.year-2023 .stat-value:nth-child(2)').textContent = totalTurnover2023.toFixed(1) + ' млн';
@@ -376,7 +380,6 @@
             document.querySelectorAll('.metric-item')[4].querySelector('.metric-value').textContent = avgTurnover2024.toFixed(1) + ' млн/мес';
             document.querySelectorAll('.metric-item')[5].querySelector('.metric-value').textContent = avgTurnover2025.toFixed(1) + ' млн/мес';
             
-            const turnoverChange2025 = ((avgTurnover2025 - avgTurnover2024) / avgTurnover2024 * 100).toFixed(1);
             document.querySelectorAll('.metric-item')[6].querySelector('.metric-value').textContent = '+' + turnoverChange2025 + '%';
             
             document.querySelectorAll('.metric-item')[7].querySelector('.metric-value').textContent = royaltyRatio2023 + '%';
@@ -592,19 +595,32 @@
                 const tableBody = document.getElementById('comparisonTableBody');
                 tableBody.innerHTML = '';
                 
-                for (let i = 0; i < 10; i++) {
+                for (let i = 0; i < 11; i++) {
                     const row = document.createElement('tr');
                     row.innerHTML = `
                         <td class="month-header">${months[i]}</td>
                         <td>${turnover2023[i].toFixed(2)} млн</td>
                         <td>${turnover2024[i].toFixed(2)} млн</td>
-                        <td>${turnover2025[i].toFixed(2)} млн</td>
+                        <td>${turnover2025[i] ? turnover2025[i].toFixed(2) + ' млн' : '-'}</td>
                         <td>${royalty2023[i].toFixed(2)} млн</td>
                         <td>${royalty2024[i].toFixed(2)} млн</td>
-                        <td>${royalty2025[i].toFixed(2)} млн</td>
+                        <td>${royalty2025[i] ? royalty2025[i].toFixed(2) + ' млн' : '-'}</td>
                     `;
                     tableBody.appendChild(row);
                 }
+                
+                // Добавляем строку для декабря
+                const decemberRow = document.createElement('tr');
+                decemberRow.innerHTML = `
+                    <td class="month-header">${months[11]}</td>
+                    <td>${turnover2023[11].toFixed(2)} млн</td>
+                    <td>${turnover2024[11].toFixed(2)} млн</td>
+                    <td>-</td>
+                    <td>${royalty2023[11].toFixed(2)} млн</td>
+                    <td>${royalty2024[11].toFixed(2)} млн</td>
+                    <td>-</td>
+                `;
+                tableBody.appendChild(decemberRow);
             }
             
             populateComparisonTable();
